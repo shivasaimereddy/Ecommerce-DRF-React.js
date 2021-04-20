@@ -1,3 +1,24 @@
 # Ecommerce-DRF-React.js
-This is a full functional Ecommerce Project with Admin Panel and PayPal Payment Integration. This project uses Django Rest Framework as Backend and React.js as Frontend. 
+This is a full functional Ecommerce Project with Admin Panel functionality and PayPal Payment method Integration. This project uses Django Rest Framework for Backend Development and React.js, Redux for Frontend Development. 
 This Project is under development
+
+Run Backend Django Project:
+
+    pip install virtualenv
+    virtualenv env
+    env\scripts\activate
+    
+    pip install -r requirements.txt
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    
+Run Frontend React.js:
+
+      npm install
+      npm start
+    
+superuser credentials:
+
+      username = shivasaimereddy@gmail.com
+      password = admin
