@@ -4,14 +4,14 @@ This Project is under development
 
 Run Backend Django Project:
 
-    pip install virtualenv
-    virtualenv env
-    env\scripts\activate
+     pip install virtualenv
+     virtualenv env
+     env\scripts\activate
     
-    pip install -r requirements.txt
-    python manage.py makemigrations
-    python manage.py migrate
-    python manage.py runserver
+     pip install -r requirements.txt
+     python manage.py makemigrations
+     python manage.py migrate
+     python manage.py runserver
     
 Run Frontend React.js:
 
