@@ -15,10 +15,10 @@ Run Backend Django Project:
     
 Run Frontend React.js:
 
-      npm install
-      npm start
+     npm install
+     npm start
     
 superuser credentials:
 
-      username = shivasaimereddy@gmail.com
-      password = admin
+     username = shivasaimereddy@gmail.com
+     password = admin
