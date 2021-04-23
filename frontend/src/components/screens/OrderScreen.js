@@ -136,7 +136,7 @@ function OrderScreen({ match, history }) {
                                                 </Col>
 
                                                 <Col md={4}>
-                                                    {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
+                                                    {item.qty} X ₹{item.price} = ₹{(item.qty * item.price).toFixed(2)}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
@@ -159,28 +159,28 @@ function OrderScreen({ match, history }) {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items:</Col>
-                                    <Col>${order.itemsPrice}</Col>
+                                    <Col>₹{order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping:</Col>
-                                    <Col>${order.shippingPrice}</Col>
+                                    <Col>₹{order.shippingPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Tax:</Col>
-                                    <Col>${order.taxPrice}</Col>
+                                    <Col>₹{order.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Total:</Col>
-                                    <Col>${order.totalPrice}</Col>
+                                    <Col>₹{order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
