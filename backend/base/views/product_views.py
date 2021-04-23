@@ -10,7 +10,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework import permissions
 
 
-from base.models import Product
+from base.models import Product, Review
 from base.serializers import ProductSerializer
 
 
@@ -93,3 +93,43 @@ def uploadImage(request):
 class productListViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def productReview(request, pk):
+    user = request.user
+    product = Product.objects.get(_id=pk)
+    data = request.data
+    print(data)
+
+    alreadyExists = product.review_set.filter(user=user).exists()
+    if alreadyExists:
+        content = {
+            f'detail': 'Product already reviewed by the {user}'}
+        return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+    elif data['rating'] == 0:
+        content = {'detail': 'Please select Rating'}
+        return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+    else:
+        review = Review.objects.create(
+            user=user,
+            product=product,
+            name=user.first_name,
+            rating=data['rating'],
+            comment=data['comment'],
+        )
+
+        reviews = product.review_set.all()
+        product.numReviews = len(reviews)
+
+        total = 0
+        for i in reviews:
+            total += i.rating
+
+        product.rating = total / len(reviews)
+        product.save()
+
+        return Response('Review Added')
