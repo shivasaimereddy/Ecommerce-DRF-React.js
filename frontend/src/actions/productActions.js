@@ -5,6 +5,10 @@ import {
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
 
+  PRODUCT_CAROUSEL_REQUEST,
+  PRODUCT_CAROUSEL_SUCCESS,
+  PRODUCT_CAROUSEL_FAIL,
+
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -40,6 +44,27 @@ export const listProducts = (keyword = '') => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
+
+export const carouselProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_CAROUSEL_REQUEST });
+
+    const { data } = await axios.get(`/api/products/carousel/`);
+
+    dispatch({
+      type: PRODUCT_CAROUSEL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_CAROUSEL_FAIL,
       payload:
         error.response && error.response.data.detail
           ? error.response.data.detail
