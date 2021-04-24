@@ -3,6 +3,10 @@ import {
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
 
+  PRODUCT_CAROUSEL_REQUEST,
+  PRODUCT_CAROUSEL_SUCCESS,
+  PRODUCT_CAROUSEL_FAIL,
+
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
@@ -42,6 +46,24 @@ export const productListReducer = (state = { products: [] }, action) => {
 
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload.products };
+
+    default:
+      return state;
+  }
+};
+
+export const productCarouselReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_CAROUSEL_REQUEST:
+      return { loading: true, products: [] };
+
+    case PRODUCT_CAROUSEL_SUCCESS:
+      return {
+        loading: false, products: action.payload,
+      };
+
+    case PRODUCT_CAROUSEL_FAIL:
+      return { loading: false, error: action.payload };
 
     default:
       return state;
