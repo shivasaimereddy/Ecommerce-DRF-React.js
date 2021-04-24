@@ -28,7 +28,7 @@ def getProducts(request):
     products = Product.objects.filter(name__icontains=query)
 
     page = request.query_params.get('page')
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 5)
 
     try:
         products = paginator.page(page)
@@ -156,3 +156,10 @@ def productReview(request, pk):
         product.save()
 
         return Response('Review Added')
+
+
+@api_view(['GET'])
+def carouselProducts(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[0:5]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
