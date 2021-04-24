@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.shortcuts import render
 from rest_framework import permissions
 
@@ -8,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.generics import CreateAPIView
 from rest_framework import permissions
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 from base.models import Product, Review
@@ -24,8 +26,26 @@ def getProducts(request):
     if query == None:
         query = ''
     products = Product.objects.filter(name__icontains=query)
+
+    page = request.query_params.get('page')
+    paginator = Paginator(products, 6)
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    if page == None:
+        page = 1
+    page = int(page)
+
     serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
+    return Response({'products': serializer.data,
+                     'page': page,
+                     'pages': paginator.num_pages
+                     })
 
 
 @api_view(['POST'])
