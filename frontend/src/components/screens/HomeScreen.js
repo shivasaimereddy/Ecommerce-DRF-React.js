@@ -4,6 +4,7 @@ import Product from "../Product";
 import Loader from "../Loader";
 import Message from "../Message";
 import Paginate from '../Paginator'
+import ProductCarousel from '../Carousel'
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
 
@@ -21,6 +22,7 @@ function HomeScreen({ history }) {
 
   return (
     <div>
+      {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
 
       {loading ? (
