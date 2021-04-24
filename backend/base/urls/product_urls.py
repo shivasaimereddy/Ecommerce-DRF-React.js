@@ -14,10 +14,9 @@ urlpatterns = [
     path('upload/', views.uploadImage, name='upload Image'),
     path('<str:pk>/reviews/', views.productReview,
          name='create review and ratings'),
+    path('carousel/', views.carouselProducts, name='Product Carousel'),
     path('<str:pk>/', views.getProduct, name='Product By id'),
     #    path('', include(router.urls))
     path('update/<str:pk>/', views.updateProduct),
     path('delete/<str:pk>/', views.deleteProduct, name='Delete Product'),
-
-
 ]
