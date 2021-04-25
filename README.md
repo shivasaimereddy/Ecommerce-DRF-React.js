@@ -17,7 +17,8 @@ Run Backend Django Project:
      python manage.py runserver
     
 Run Frontend React.js:
-
+     
+     cd backend/frontend
      npm install
      npm start
     
