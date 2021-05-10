@@ -9,7 +9,6 @@ Run Backend Django Project:
      env\scripts\activate
     
      pip install -r requirements.txt
-     cd backend
      python manage.py makemigrations
      python manage.py migrate
      python manage.py makemigrations base
@@ -18,7 +17,7 @@ Run Backend Django Project:
     
 Run Frontend React.js:
      
-     cd backend/frontend
+     cd frontend
      npm install
      npm start
     

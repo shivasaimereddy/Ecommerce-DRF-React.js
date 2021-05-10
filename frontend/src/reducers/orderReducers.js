@@ -62,7 +62,7 @@ export const orderDetailsReducer = (state = { loading: true, orderItems: [], shi
         case ORDER_DETAILS_REQUEST:
             return {
                 ...state,
-                loading: false
+                loading: true
             }
 
         case ORDER_DETAILS_SUCCESS:
